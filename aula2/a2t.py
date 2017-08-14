@@ -35,10 +35,12 @@ print str("Imprime o utlimo valor: ")+str(v2[-1:])
 v2[3] = "Alterar o valor"
 print v2
 
-#Diferenca entre vetor e tuple
-#A tuple is a sequence of immutable Python objects. 
-#The differences between tuples and lists are, the tuples cannot be changed unlike lists 
-#and tuples use parentheses, whereas lists use square brackets.
+"""
+Diferenca entre vetor e tuple
+A tuple is a sequence of immutable Python objects. 
+The differences between tuples and lists are, the tuples cannot be changed unlike lists 
+and tuples use parentheses, whereas lists use square brackets.
+"""
 
 #Exemplo 4
 palavra1 = raw_input("Digite uma palavra: ")
