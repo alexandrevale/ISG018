@@ -78,3 +78,16 @@ A decriptação é executada de maneira inversa, "olhando a correspondência de 
     * D (k, "KEOH") = HTML
 
 Fato: a cifra de substituição é consistente.
+
+**Ataque do Texto Cifrado Unico (Cipher Text Only Attack)**
+1. Análise de frequência de letras
+    
+    |PT | EN|
+    |   |   |
+    | A | E |
+    | E | T |
+    | O | A |
+    | S | O |
+    | R | I |
+
+2. Substituir a partir da frequência
