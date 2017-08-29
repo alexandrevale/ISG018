@@ -22,3 +22,4 @@ dicionario2({"indice": "valor",
             True:4,
             1.1:(3,4,5)
             })
+#Funcao e Dicionario são isomorfos
