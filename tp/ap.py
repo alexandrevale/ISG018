@@ -22,27 +22,13 @@ def montarDicionario2(gama1,gama2):
         for (x,y) in z:
             dicionario[y] = x
         return dicionario
-        
-# aprimorar metodo def contarCaractere(texto):
-#    contador = 0
-#    for letra in texto:
-#        if letra == 'A':
-#            contador = contador + 1
-#    return contador
 
 chave = montarDicionario2(" ETARINOSHMLCFPDGUWBYVKJXQZ,0123456789-.", #alfabeto texto
                           " IQUZVPTYFXGHNBMJADLESW____,0123456789-.") #alfabeto frequencia
 
-#chave = montarDicionario2(" UXXXXHXXEXXBXFXRTXXOAIXXSR,0123456789-.",
-                          #" ABCDEFGHIJKLMNOPQRSTUVWXYZ,0123456789-.")   
-
 print 'Quantidade total de caracteres do texto: ' , len(texto)
-print
-print 'Quantidade total por caractere: ' , contarCaract.most_common(39)#39 caracteres
-print 'Texto descriptografado: '
-print
+print '\nQuantidade total por caractere: ' , contarCaract.most_common(39) #39 caracteres
+print '\nTexto descriptografado:'
 print decriptar(chave,texto)
-print
-print 'Texto traduzido: '
-print
+print '\nTexto traduzido:'
 print (gs.translate(decriptar(chave, texto), 'pt-br'))
