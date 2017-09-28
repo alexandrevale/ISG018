@@ -1,113 +1,41 @@
-# Two-Time Pad
+# Cifras de Fluxo
 
-O intuito do ataque é obter mais de uma mensagem encriptografada com a mesma chave.
+## Gerador de números pseudo aleatórios
+SEED (semente) dispara o algoritmo conforme esta informação. Será usada como chave.
+E(k,m) = m ^ GNPA(k)
 
-## Exemplo 
-C1 ^ C2 =
-(m1 ^ k) ^ (m2 ^ k) =
-(m1 ^ K) ^ (k ^ m2) =
-m1 ^ m2
+Onde,
+* GNPA: Gerador de números pseudo aleatórios
+* k é a seed/chave
 
+## Algoritmos
 
+### LFSR (Linear Feedback Shift Register)
+Gera bits aleatórios de acordo com uma relação de recorrência
 
+#### Exemplo
+Gere 4 bits aleatórios a partir de:
+* Xi+4 = Xi+3 ^ Xi
+Necessário prover 4 bits de seed (2 elevado a 4 = 16 diferentes)
 
+X = 0110, X0 = 0, X1 = 1, X2 = 1, X3 = 0
+Para i = 0 -> X4 = X3 ^ X0 = 0 ^ 0 = 0
+Para i = 1 -> X5 = X4 ^ X1 = 0 ^ 1 = 1
+Para i = 2 -> X6 = X5 ^ X2 = 1 ^ 1 = 0
+Para i = 3 -> X7 = X6 ^ X3 = 0 ^ 0 = 0
 
+Resposta: 0100
 
+#### Exercício
+Gere 6 bits aletórios a partir de:
+* Xi+2 = Xi ^ Xi+1
 
+X = 11, X0 = 1, X1 = 1
+Para i = 0 -> X2 = X1 ^ X0 = 1 ^ 1 = 0
+Para i = 1 -> X3 = X2 ^ X1 = 0 ^ 1 = 1
+Para i = 2 -> X4 = X3 ^ X2 = 1 ^ 0 = 1
+Para i = 3 -> X5 = X4 ^ X3 = 1 ^ 1 = 0
+Para i = 4 -> X6 = X5 ^ X4 = 0 ^ 1 = 1
+Para i = 5 -> X7 = X6 ^ X5 = 1 ^ 0 = 1
 
-
-
-
-
-
-Tabela verdade:
-
-    |XOR| 0 | 1 |
-    | 0 | 0 | 1 |
-    | 1 | 1 | 0 |
-
-A principal diferença entre o E e OU é que no XOR não admite (Verdadeiro, Verdadeiro)
-
-## Criptografar
-
-### Exemplo
-M = "JAVA"
-K = "BCFF"
-
-Onde:
-J ^ B = 74 ^ 66 = 8
-A ^ C = 65 ^ 67 = 2
-V ^ F = 86 ^ 70 = 16
-A ^ F = 65 ^ 70 = 7
-
-XOR bit-a-bit
-
-    |  ^ | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-    | 74 |  1 |  0 |  0 | 1 | 0 | 1 | 0 |
-    | 66 |  1 |  0 |  0 | 0 | 0 | 1 | 0 |
-    |    |  0 |  0 |  0 | 1 | 0 | 0 | 0 |
-
-    |  ^ | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-    | 65 |  1 |  0 |  0 | 0 | 0 | 0 | 1 |
-    | 67 |  1 |  0 |  0 | 0 | 0 | 1 | 1 |
-    |    |  0 |  0 |  0 | 0 | 0 | 1 | 0 |
-
-E("BCFF, "JAVA") = 08021007
-
-### Exercício
-Encripte "FATEC" com a chave "!@ABB" usando OTP.
-M = "FATEC"
-K = "!@ABB" 
-
-F ^ ! = 70 ^ 33 = 64+32+4+2+1 = 103
-
-    |  ^ | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-    | 70 |  1 |  0 |  0 | 0 | 1 | 1 | 0 |
-    | 33 |  0 |  1 |  0 | 0 | 0 | 0 | 1 |
-    |    |  1 |  1 |  0 | 0 | 1 | 1 | 1 |
-
-A ^ @ = 65 ^ 64 = 1
-
-    |  ^ | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-    | 65 |  1 |  0 |  0 | 0 | 0 | 0 | 1 |
-    | 64 |  1 |  0 |  0 | 0 | 0 | 0 | 0 |
-    |    |  0 |  0 |  0 | 0 | 0 | 0 | 1 |
- 
-T ^ A = 84 ^ 65 = 16+4+1 = 21
-
-    |  ^ | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-    | 84 |  1 |  0 |  1 | 0 | 1 | 0 | 0 |
-    | 65 |  1 |  0 |  0 | 0 | 0 | 0 | 1 |
-    |    |  0 |  0 |  1 | 0 | 1 | 0 | 1 |
-    
-E ^ B = 69 ^ 66 = 4+2+1 = 7
-
-    |  ^ | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-    | 69 |  1 |  0 |  0 | 0 | 1 | 0 | 1 |
-    | 66 |  1 |  0 |  0 | 0 | 0 | 1 | 0 |
-    |    |  0 |  0 |  0 | 0 | 1 | 1 | 1 |
-
-C ^ B = 67 ^ 66 = 1
-
-    |  ^ | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-    | 67 |  1 |  0 |  0 | 0 | 0 | 1 | 1 |
-    | 66 |  1 |  0 |  0 | 0 | 0 | 1 | 0 |
-    |    |  0 |  0 |  0 | 0 | 0 | 0 | 1 |
-    
-E("!@ABB, "FATEC") = 6701150701
-
-## Descriptografar
-D(K,E(K,M)) = D(K,C), onde, C = K^M
-
-    |103 |  1 |  1 |  0 | 0 | 1 | 1 | 1 | 
-    |1   |  0 |  0 |  0 | 0 | 0 | 0 | 1 | 
-    |21  |  0 |  0 |  1 | 0 | 1 | 0 | 1 |    
-    |7   |  0 |  0 |  0 | 0 | 1 | 1 | 1 |   
-    |1   |  0 |  0 |  0 | 0 | 0 | 0 | 1 |
-
-XOR = F
-
-    |  ^ | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-    |103 |  1 |  1 |  0 | 0 | 1 | 1 | 1 |
-    | 33 |  0 |  1 |  0 | 0 | 0 | 0 | 1 |    
-    |    |  1 |  0 |  0 | 0 | 1 | 1 | 0 |
+Resposta: 011011

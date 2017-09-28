@@ -25,7 +25,7 @@ A partir de uma tabela K (chave) que faz correspondência em um alfabeto, o algo
 A decriptação é executada de maneira inversa, "olhando a correspondência de trás para frente".
 ### Exemplo 1:
     seja Γ (Gama) um alfabeto...
-    M = Γ * ( * indica todas as strings possíveis em Γ)
+    M = Γ * ( * indica todas as strings possíveis em Γ )
     C = Γ *
     K = {K:Γ -> Γ /K} é bijetora (pares), isto é, K: {0,1,2} -> {0,1,2} onde, K(0)=2, K(1)=0, K(2)=1,...
 
@@ -33,6 +33,7 @@ A decriptação é executada de maneira inversa, "olhando a correspondência de 
     Γ  = { , A, B, C, ..., Z}, total = 27
 
 ### Exemplo 3:
+
     k = |   | D |
         | A | P |
         | B |   |
